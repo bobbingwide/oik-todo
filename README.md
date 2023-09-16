@@ -1,10 +1,11 @@
 # oik-todo 
+![banner](assets/oik-todo-banner-772x250.jpg)
 * Contributors: bobbingwide
-* Donate link: http://www.oik-plugins.com/oik/oik-donate/
+* Donate link: https://oik-plugins.com/oik/oik-donate/
 * Tags: CPT, TODO, oik, custom fields
 * Requires at least: 3.8
-* Tested up to: 3.8.1
-* Stable tag: 0.2
+* Tested up to: 6.3.1
+* Stable tag: 0.3.0
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Text Domain: oik-todo
@@ -37,6 +38,12 @@ No, but you could make one if you thought it was necessary?
 1. oik-todo in action
 
 ## Upgrade Notice 
+# 0.3.0 
+Now works with PHP 8.2.
+
+# 0.2.1 
+Now registers the plugin server for updates.
+
 # 0.2 
 Required for examples of [bw_related] using date fields.
 
@@ -44,6 +51,15 @@ Required for examples of [bw_related] using date fields.
 Depends on oik and oik-fields
 
 ## Changelog 
+# 0.3.0 
+* Changed: Updated for PHP 8.2 support #1
+* Fixed: Avoids Fatal error in WordPress dashboard All items #1
+* Tested: With WordPress 6.3.1
+* Tested: With PHP 8.2
+
+# 0.2.1 
+* Added: Registers the plugin for updates from oik servers.
+
 # 0.2 
 * Added: made public so that it could be used to demonstrate oik-dates functionality
 * Note: oik-todo is not dependent upon oik-dates but you can use oik-dates functionality against the 'date' type fields with the [bw_related] shortcode.
@@ -54,6 +70,6 @@ Depends on oik and oik-fields
 
 ## Further reading 
 If you want to read more about the oik plugins then please visit the
-[oik plugin](http://www.oik-plugins.com/oik)
+[oik plugin](https://www.oik-plugins.com/oik)
 **"the oik plugin - for often included key-information"**
 

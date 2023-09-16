@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: oik todo list 
-Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-todo
+Plugin URI: https://www.oik-plugins.com/oik-plugins/oik-todo
 Description: oik todo - TODO list custom post type 
 Depends: oik base plugin
-Version: 0.2.1
+Version: 0.3.0
 Author: bobbingwide
-Author URI: http://www.oik-plugins.com/author/bobbingwide
+Author URI: https://bobbingwide.com/about-bobbing-wide/
 Text Domain: oik-todo
 Domain Path: /languages/
 License: GPLv2 or later
@@ -185,13 +185,3 @@ function oik_todo_loaded() {
 }
 
 oik_todo_loaded();
-
-
-
-
-
-
-
-  
-
- 
