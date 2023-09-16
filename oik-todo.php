@@ -2,14 +2,14 @@
 /*
 Plugin Name: oik todo list 
 Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-todo.php
-Description: oik todo 
+Description: oik todo - TODO list custom post type 
 Depends: oik base plugin
-Version: 0.1
+Version: 0.2
 Author: bobbingwide
 Author URI: http://www.bobbingwide.com
 License: GPL2
 
-    Copyright 2013 Bobbing Wide (email : herb@bobbingwide.com )
+    Copyright 2013,2014 Bobbing Wide (email : herb@bobbingwide.com )
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
@@ -27,13 +27,16 @@ License: GPL2
 
 */
 
-add_action( 'oik_fields_loaded', 'oik_todo_init' );
-
+/**
+ * Implement "oik_fields_loaded" action for oik-todo
+ */
 function oik_todo_init( ) {
   oik_register_oik_todo();
 }
 
 /**
+ *
+ * Return an array of Task size estimates
  *
  * Size    Estimate
  * ------  --------
@@ -44,7 +47,8 @@ function oik_todo_init( ) {
  * V Large up to a month
  */ 
 function oik_todo_task_size() {
-  $task_size = array( "Tiny"
+  $task_size = array( 0
+                    , "Tiny"
                     , "Small"
                     , "Medium"
                     , "Large"
@@ -53,9 +57,10 @@ function oik_todo_task_size() {
   return( $task_size );
 }
 
-
 /**
  *
+ * Return an array of task complexities 
+ * 
  * Trivial - very easy to do
  * Simple - easy to do - e.g. this oik-todo plugin
  * Average - requires a bit of thought / planning / testing
@@ -63,7 +68,8 @@ function oik_todo_task_size() {
  * V.Complex - e.g. oik-clone plugin
  */ 
 function oik_todo_task_complexity() {
-  $task_complexity = array( "Trivial"
+  $task_complexity = array( 0 
+                    , "Trivial"
                     , "Simple"
                     , "Average"
                     , "Complex"
@@ -73,6 +79,9 @@ function oik_todo_task_complexity() {
 } 
 
 /**
+ * Return an array of the Value of doing this.
+ * @deprecated - see Priority category
+ * 
  * What's it worth? Why do it? 
  * 
  * 
@@ -100,35 +109,36 @@ function oik_todo_task_value() {
 function oik_register_oik_todo() {
   $post_type = 'oik_todo';
   $post_type_args = array();
-  $post_type_args['label'] = 'todo';
-  $post_type_args['description'] = 'todo list items';
+  $post_type_args['label'] = 'TODO';
+  $post_type_args['description'] = 'TODO list items';
   $post_type_args['hierarchical'] = true; 
-  
   
   bw_register_post_type( $post_type, $post_type_args );
   add_post_type_support( $post_type, 'page-attributes' );
   
-  bw_register_field( "_oik_todo_ref", "noderef", "Reference" ); 
+  // bw_register_field( "_oik_todo_ref", "noderef", "Reference" ); 
   bw_register_field( "_oik_todo_start", "date", "Start date" );
   bw_register_field( "_oik_todo_end", "date", "End date" ); 
-  bw_register_field( "_oik_todo_size", "select", "Size", array( '#options' => oik_todo_task_size() ) ); 
-  bw_register_field( "_oik_todo_complexity", "select", "Complexity", array( '#options' => oik_todo_task_complexity() ) ); 
-  
+  bw_register_field( "_oik_todo_size", "select", "Size", array( '#options' => oik_todo_task_size(), '#optional' => true ) ); 
+  bw_register_field( "_oik_todo_complexity", "select", "Complexity", array( '#options' => oik_todo_task_complexity(), '#optional' => true ) ); 
   //bw_register_field_for_object_type( "_oik_todo_ref", $post_type );
   bw_register_field_for_object_type( "_oik_todo_start", $post_type );
   bw_register_field_for_object_type( "_oik_todo_end", $post_type );
   bw_register_field_for_object_type( "_oik_todo_size", $post_type );
   bw_register_field_for_object_type( "_oik_todo_complexity", $post_type );
   $taxonomy = 'todo_priority'; 
-  bw_register_custom_category( $taxonomy, $post_type, __( "Priority" ) );
-  //register_taxonomy_for_object_type( $taxonomy, $post_type );
+  $labels = array( "labels" => array( "singular_name" => __( "Priority" ), "name" => __( "Priorities" ) ) );
+  bw_register_custom_category( $taxonomy, $post_type, $labels );
   $taxonomy = "todo_status";
-  bw_register_custom_category( $taxonomy, $post_type, __( "Status" ) );
-  //register_taxonomy_for_object_type( $taxonomy, $post_type );
+  $labels = array( "labels" => array( "singular_name" => __( "Status" ), "name" => __( "Statuses" ) ) );
+  bw_register_custom_category( $taxonomy, $post_type, $labels );
   add_filter( "manage_edit-${post_type}_columns", "oik_todo_columns", 10, 2 );
   add_action( "manage_${post_type}_posts_custom_column", "bw_custom_column_admin", 10, 2 );
 }
 
+/**
+ * Columns to display in the admin page
+ */
 function oik_todo_columns( $columns, $arg2 ) {
   //$columns["_oik_todo_ref"] = __("Reference"); 
   $columns["_oik_todo_start"] = __("Start"); 
@@ -137,9 +147,23 @@ function oik_todo_columns( $columns, $arg2 ) {
   return( $columns ); 
 } 
  
+/**
+ * Theme the _oik_todo_ref field
+ * 
+ * Current unused!
+ */    
 function _bw_theme_field_default__oik_todo_ref( $key, $value ) {
   e( $value[0] );
 }
+
+/** 
+ * Function to invoke when oik-todo plugin file is loaded 
+ */
+function oik_todo_loaded() {
+  add_action( 'oik_fields_loaded', 'oik_todo_init' );
+}
+
+oik_todo_loaded();
 
 
 

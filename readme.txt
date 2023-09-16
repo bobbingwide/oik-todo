@@ -1,10 +1,10 @@
 === oik-todo ===
 Contributors: bobbingwide
 Donate link: http://www.oik-plugins.com/oik/oik-donate/
-Tags: shortcodes, smart, lazy
-Requires at least: 3.5
-Tested up to: 3.6.1
-Stable tag: VERSION
+Tags: CPT, TODO, oik, custom fields
+Requires at least: 3.8
+Tested up to: 3.8.1
+Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: oik-todo
@@ -12,8 +12,10 @@ Domain Path: /languages/
 
 == Description ==
 TODO custom post type ( oik_todo ) used to create a list of TODO tasks that you can work through when you've nothing else TO DO.
+
 Fat chance... the list just get's longer and longer.
 
+Use in conjunction with [bw_related] to show the list of things to do in the future and the list of things to do in the past.
 
 
 == Installation ==
@@ -35,10 +37,17 @@ No, but you could make one if you thought it was necessary?
 1. oik-todo in action
 
 == Upgrade Notice ==
+= 0.2 =
+Required for examples of [bw_related] using date fields. 
+
 = 0.1 =
 Depends on oik and oik-fields
 
 == Changelog == 
+= 0.2 =
+* Added: made public so that it could be used to demonstrate oik-dates functionality
+* Note: oik-todo is not dependent upon oik-dates but you can use oik-dates functionality against the 'date' type fields with the [bw_related] shortcode.
+
 = 0.1 =
 * Added: New plugin to demonstrate oik and oik-fields whilst keeping a list of things TODO
 
