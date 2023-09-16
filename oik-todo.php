@@ -1,15 +1,18 @@
 <?php
 /*
 Plugin Name: oik todo list 
-Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-todo.php
+Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-todo
 Description: oik todo - TODO list custom post type 
 Depends: oik base plugin
 Version: 0.2
 Author: bobbingwide
-Author URI: http://www.bobbingwide.com
-License: GPL2
+Author URI: http://www.oik-plugins.com/author/bobbingwide
+Text Domain: oik-todo
+Domain Path: /languages/
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-    Copyright 2013,2014 Bobbing Wide (email : herb@bobbingwide.com )
+    Copyright 2013-2015 Bobbing Wide (email : herb@bobbingwide.com )
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
@@ -32,6 +35,13 @@ License: GPL2
  */
 function oik_todo_init( ) {
   oik_register_oik_todo();
+}
+
+/**
+ * Implement "oik_admin_menu" to register our plugin server
+ */
+function oik_todo_oik_admin_menu() {
+	oik_register_plugin_server( __FILE__ );
 }
 
 /**
@@ -105,6 +115,7 @@ function oik_todo_task_value() {
  * The description of the task is the content field
  * There should be categories for the Priority and Status
  * Tasks should be hiearchical
+ * TODO items can be listed in an archive.
  */
 function oik_register_oik_todo() {
   $post_type = 'oik_todo';
@@ -112,9 +123,18 @@ function oik_register_oik_todo() {
   $post_type_args['label'] = 'TODO';
   $post_type_args['description'] = 'TODO list items';
   $post_type_args['hierarchical'] = true; 
+	$post_type_args['has_archive'] = true;
+	$post_type_args['menu_icon'] =  'dashicons-clipboard';
+
+  // This line was after the bw_register_post_type() call.
+  // It was probably moved in order to try out some things with oik-types.
+  // 
+  //$post_type_args['supports'] = array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes', 'publicize', 'author' );
   
   bw_register_post_type( $post_type, $post_type_args );
-  add_post_type_support( $post_type, 'page-attributes' );
+  //add_post_type_support( $post_type, 'page-attributes' );
+  //add_post_type_support( $post_type, 'author' );
+  
   
   // bw_register_field( "_oik_todo_ref", "noderef", "Reference" ); 
   bw_register_field( "_oik_todo_start", "date", "Start date" );
@@ -161,6 +181,7 @@ function _bw_theme_field_default__oik_todo_ref( $key, $value ) {
  */
 function oik_todo_loaded() {
   add_action( 'oik_fields_loaded', 'oik_todo_init' );
+	add_action( 'oik_admin_menu', 'oik_todo_oik_admin_menu' );
 }
 
 oik_todo_loaded();
