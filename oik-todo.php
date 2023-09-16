@@ -4,7 +4,7 @@ Plugin Name: oik todo list
 Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-todo
 Description: oik todo - TODO list custom post type 
 Depends: oik base plugin
-Version: 0.2
+Version: 0.2.1
 Author: bobbingwide
 Author URI: http://www.oik-plugins.com/author/bobbingwide
 Text Domain: oik-todo
@@ -12,7 +12,7 @@ Domain Path: /languages/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-    Copyright 2013-2015 Bobbing Wide (email : herb@bobbingwide.com )
+    Copyright 2013-2015, 2023 Bobbing Wide (email : herb@bobbingwide.com )
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
@@ -152,14 +152,14 @@ function oik_register_oik_todo() {
   $taxonomy = "todo_status";
   $labels = array( "labels" => array( "singular_name" => __( "Status" ), "name" => __( "Statuses" ) ) );
   bw_register_custom_category( $taxonomy, $post_type, $labels );
-  add_filter( "manage_edit-${post_type}_columns", "oik_todo_columns", 10, 2 );
-  add_action( "manage_${post_type}_posts_custom_column", "bw_custom_column_admin", 10, 2 );
+  add_filter( "manage_edit-{$post_type}_columns", "oik_todo_columns", 10, 1 );
+  add_action( "manage_{$post_type}_posts_custom_column", "bw_custom_column_admin", 10, 2 );
 }
 
 /**
  * Columns to display in the admin page
  */
-function oik_todo_columns( $columns, $arg2 ) {
+function oik_todo_columns( $columns ) {
   //$columns["_oik_todo_ref"] = __("Reference"); 
   $columns["_oik_todo_start"] = __("Start"); 
   $columns["_oik_todo_end"] = __("End"); 
