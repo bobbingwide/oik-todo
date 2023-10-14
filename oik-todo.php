@@ -4,7 +4,7 @@ Plugin Name: oik todo list
 Plugin URI: https://www.oik-plugins.com/oik-plugins/oik-todo
 Description: oik todo - TODO list custom post type 
 Depends: oik base plugin
-Version: 0.3.0
+Version: 0.4.0
 Author: bobbingwide
 Author URI: https://bobbingwide.com/about-bobbing-wide/
 Text Domain: oik-todo

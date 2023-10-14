@@ -4,8 +4,8 @@
 * Donate link: https://oik-plugins.com/oik/oik-donate/
 * Tags: CPT, TODO, oik, custom fields
 * Requires at least: 3.8
-* Tested up to: 6.3.1
-* Stable tag: 0.3.0
+* Tested up to: 6.4-beta3
+* Stable tag: 0.4.0
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Text Domain: oik-todo
@@ -38,6 +38,9 @@ No, but you could make one if you thought it was necessary?
 1. oik-todo in action
 
 ## Upgrade Notice 
+# 0.4.0 
+Now supports the block editor.
+
 # 0.3.0 
 Now works with PHP 8.2.
 
@@ -51,6 +54,11 @@ Required for examples of [bw_related] using date fields.
 Depends on oik and oik-fields
 
 ## Changelog 
+# 0.4.0 
+* Changed: Support the block editor #2
+* Tested: With WordPress 6.3.1
+* Tested: With PHP 8.2
+
 # 0.3.0 
 * Changed: Updated for PHP 8.2 support #1
 * Fixed: Avoids Fatal error in WordPress dashboard All items #1
