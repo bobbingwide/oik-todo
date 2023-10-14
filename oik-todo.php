@@ -125,11 +125,12 @@ function oik_register_oik_todo() {
   $post_type_args['hierarchical'] = true; 
 	$post_type_args['has_archive'] = true;
 	$post_type_args['menu_icon'] =  'dashicons-clipboard';
+	$post_type_args['show_in_rest'] = true;
 
   // This line was after the bw_register_post_type() call.
   // It was probably moved in order to try out some things with oik-types.
   // 
-  //$post_type_args['supports'] = array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes', 'publicize', 'author' );
+  $post_type_args['supports'] = array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes', 'publicize', 'author' );
   
   bw_register_post_type( $post_type, $post_type_args );
   //add_post_type_support( $post_type, 'page-attributes' );
